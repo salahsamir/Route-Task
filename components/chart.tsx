@@ -1,6 +1,5 @@
 // chart.tsx
-"use client";
-
+"use client"
 import { useEffect, useState } from 'react';
 import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
 import { ChartContainer, ChartConfig } from '@/components/ui/chart';
@@ -22,20 +21,14 @@ interface IProps {
 
 export const Chart = ({ chart }: IProps) => {
   const [newData, setNewData] = useState<any[]>(chart);
-
   useEffect(() => {
-    console.log('Chart data:', chart);
     setNewData(chart);
   }, [chart]);
-
   const chartData = newData.map((item: any) => ({
     name: item.name,
     One: item.transactions[0]?.amount || 0,
     Two: item.transactions[1]?.amount || 0,
   }));
-
-  console.log('Formatted chart data:', chartData);
-
   return (
     <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
       <BarChart accessibilityLayer data={chartData}>
